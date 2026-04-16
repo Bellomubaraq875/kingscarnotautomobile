@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   title: "KingsCarNotAutomobile - ",
   description: "Platform for automobile",
   icons: {
-    icon: "/images/Logos/Kingcarnotautomobile.jpeg",
-    shortcut: "/images/Logos/Kingcarnotautomobile.jpeg",
-    apple: "/images/Logos/Kingcarnotautomobile.jpeg",
+    icon: "/images/Logos/Kingcarnotmobile.jpeg",
+    shortcut: "/images/Logos/Kingcarnotmobile.jpeg",
+    apple: "/images/Logos/Kingcarnotmobile.jpeg",
     other: [
       {
         rel: "icon",

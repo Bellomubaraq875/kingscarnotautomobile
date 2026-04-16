@@ -1,26 +1,99 @@
 @import "tailwindcss";
 
+@theme {
+  /* --- Fonts --- */
+  --font-sans: var(--font-jost), "Inter", system-ui, sans-serif;
+  --font-serif: var(--font-jost), sans-serif; 
+
+  /* --- Colors --- */
+  --color-port-yellow: #f5d456;
+  --color-port-blue: #011372;
+  --color-port-sky: #02b3e9;
+  --color-earth: #a0937d;
+  --color-surface-dark: #0f0f16;
+
+  /* --- Custom Animations --- */
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* -----------------------------
+   Custom CSS Variables
+------------------------------*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(12px);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* -----------------------------
+   Base Styles
+------------------------------*/
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-surface-dark);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #f5f5f5;
+  background-color: var(--color-surface-dark);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+body {
+  @apply antialiased;
+}
+
+/* --- THE GLOBAL AMBIENT GLOW --- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 15% 15%, rgba(2, 179, 233, 0.08) 0%, transparent 35%),
+    radial-gradient(circle at 85% 85%, rgba(245, 212, 86, 0.05) 0%, transparent 35%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* --- THE WAVY LINE BACKGROUND --- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 400 Q 350 150 700 400 T 1400 400' stroke='rgba(255,255,255,0.03)' fill='transparent'/%3E%3C/svg%3E");
+  background-repeat: repeat-y;
+  background-size: cover;
+  z-index: -1;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* --- COMPONENTS --- */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+}
+
+/* All headings now inherit the clean Jost look */
+.heading-glow {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+/* --- SCROLLBAR --- */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-earth);
+  border-radius: 20px;
 }

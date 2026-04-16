@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { Search, Calendar, User, ArrowUpRight, Cpu, Database, Key, ShieldCheck, Star } from 'lucide-react';
 import { dummyNews } from '../data/dummyNews';
 
-const NewsPortal = () => {
+const NewsPage = () => {
     const categories = ["All", "Technical Update", "Performance", "Innovation", "User Experience", "Mercedes", "BMW"];
 
     const recommendedTopics = [
@@ -174,4 +174,4 @@ const NewsPortal = () => {
     );
 };
 
-export default NewsPortal;
+export default NewsPage;

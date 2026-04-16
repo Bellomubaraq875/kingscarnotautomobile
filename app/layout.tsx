@@ -3,28 +3,23 @@ import { Jost } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./components/layout/Footer";
+import Navbar from "./components/layout/Navbar";
 
 const jost = Jost({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-jost",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "KingsCarNotAutomobile - ",
-  description: "Platform for automobile",
+  title: "KingsCarNotAutomobile — Premium Diagnostics & Software",
+  description: "OEM-Level diagnostic expertise, ECU programming, and software solutions for high-end automotive performance.",
   icons: {
     icon: "/images/Logos/Kingcarnotmobile.jpeg",
     shortcut: "/images/Logos/Kingcarnotmobile.jpeg",
     apple: "/images/Logos/Kingcarnotmobile.jpeg",
-    other: [
-      {
-        rel: "icon",
-        url: "/images/Logos/Kingcarnotautomobile.jpeg",
-        sizes: "32x32",
-      },
-    ],
   },
 };
 
@@ -34,14 +29,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${jost.variable} ${jost.className}`}>
-      <body className="antialiased bg-white text-gray-900 font-sans">
+    <html lang="en" className={`${jost.variable}`}>
+      <body className={`${jost.className} antialiased bg-white text-slate-900 selection:bg-blue-100 selection:text-blue-900`}>
+        
+        <Navbar />
+        <main className="min-h-screen flex flex-col">
+          <div className="flex-grow">
+            {children}
+          </div>
+        </main>
+        <Footer />
 
-        {children}
-
+        {/* Feedback Notifications */}
         <ToastContainer
           position="top-right"
-          autoClose={5000}
+          autoClose={4000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
@@ -49,9 +51,8 @@ export default function RootLayout({
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          theme="colored"
+          theme="light" 
         />
-
       </body>
     </html>
   );

@@ -17,15 +17,6 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <Navbar />
       <main className="flex flex-col">
-        {/* Wrapping the main content in Suspense triggers the loading.tsx/SkeletonLoader */}
-        {/* <Suspense fallback={<SkeletonLoader />}> */}
-          {/* <HeroSection />
-          <BrandsAndStats/>
-          <ServicesSection/>
-          <SoftwareSection/>
-          <WhyChooseUs/>
-          <CallToAction/> */}
-          
           <HeroSection/>
           <BrandsAndStats/>
           <ServicesSection/>

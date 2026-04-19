@@ -15,7 +15,7 @@ import { Suspense } from "react";
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      <Navbar />
+      {/* <Navbar /> */}
       <main className="flex flex-col">
           <HeroSection/>
           <BrandsAndStats/>
@@ -25,7 +25,7 @@ export default function Home() {
           <CallToAction/>
         {/* </Suspense> */}
 
-        <Footer />
+        {/* <Footer /> */}
       </main>
     </div>
   );

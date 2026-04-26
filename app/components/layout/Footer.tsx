@@ -110,7 +110,7 @@ const Footer = () => {
             <h4 className="text-[10px] font-black tracking-[0.3em] text-blue-500 uppercase">Contact</h4>
             <ul className="space-y-4 text-sm text-gray-400">
               <li className="flex items-center gap-3">
-                <MapPin size={16} className="text-blue-500" /> Ibadan, Nigeria
+                <MapPin size={16} className="text-blue-500" /> Asaba, Nigeria
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="text-blue-500" /> +234 810 000 0000

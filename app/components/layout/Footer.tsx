@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/image'; // Assuming standard Next.js link usage below
+import Link from 'next/image'; 
 import NextLink from 'next/link';
 import {
   Mail,
@@ -16,7 +16,6 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn } from "react-icons/f
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  // Redefined with actual routes
   const footerLinks = {
     Company: [
       { name: 'About Us', path: '/about' },
@@ -110,10 +109,14 @@ const Footer = () => {
             <h4 className="text-[10px] font-black tracking-[0.3em] text-blue-500 uppercase">Contact</h4>
             <ul className="space-y-4 text-sm text-gray-400">
               <li className="flex items-center gap-3">
-                <MapPin size={16} className="text-blue-500" /> Asaba, Nigeria
+                <MapPin size={16} className="text-blue-500" /> New
+                ultra moden mechanic village, opposite North
+                West felling station,  Marian babagida junction,
+                along Asaba Benin express road, block B1
+                shop 51, Asaba Delta State. 
               </li>
               <li className="flex items-center gap-3">
-                <Phone size={16} className="text-blue-500" /> +234 810 000 0000
+                <Phone size={16} className="text-blue-500" /> +234 810 223 6065
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={16} className="text-blue-500" /> support@kingscarnot.com

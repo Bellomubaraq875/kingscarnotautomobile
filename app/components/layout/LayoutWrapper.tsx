@@ -14,8 +14,8 @@ export default function LayoutWrapper({
     const pathname = usePathname();
 
     const hideLayout =
-        pathname.startsWith("/auth/login") ||
-        pathname.startsWith("/auth/register");
+        pathname.startsWith("/login") ||
+        pathname.startsWith("/register");
 
     return (
         <>

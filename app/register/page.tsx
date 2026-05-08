@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     ShieldCheck,
@@ -15,37 +16,37 @@ import {
     ChevronDown,
 } from "lucide-react";
 
+// 1. Keep the data outside the component
 const testimonials = [
     {
         id: 1,
         initials: "AJ",
         name: "Adebayo Johnson",
         vehicle: "BMW X5 Owner",
-        quote:
-            "The registration process was seamless. I can now manage all my module repairs and programming requests in one secure dashboard.",
-        color: "bg-blue-500",
+        quote: "The registration process was seamless. I can now manage all my module repairs and programming requests in one secure dashboard.",
+        color: "bg-blue-600",
     },
     {
         id: 2,
         initials: "CO",
         name: "Chioma Okafor",
         vehicle: "Mercedes C300",
-        quote:
-            "Finally, a platform that understands FBS-4 protocols. Booking my specialized module sync took less than two minutes.",
-        color: "bg-purple-500",
+        quote: "Finally, a platform that understands FBS-4 protocols. Booking my specialized module sync took less than two minutes.",
+        color: "bg-purple-600",
     },
     {
         id: 3,
         initials: "EN",
         name: "Emeka Nwosu",
         vehicle: "Audi A4 Owner",
-        quote:
-            "Highly technical team. They resynced a used transmission module dealers said was impossible to reuse.",
-        color: "bg-emerald-500",
+        quote: "Highly technical team. They resynced a used transmission module dealers said was impossible to reuse.",
+        color: "bg-emerald-600",
     },
 ];
 
+// 2. THE MAIN COMPONENT (MUST BE EXPORT DEFAULT)
 export default function RegisterPage() {
+    const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [current, setCurrent] = useState(0);
 
@@ -56,148 +57,119 @@ export default function RegisterPage() {
         return () => clearInterval(timer);
     }, []);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
-        setTimeout(() => setIsLoading(false), 2000);
+        setTimeout(() => {
+            localStorage.setItem("token", "demo-token");
+            router.push("/dashboard/user");
+            setIsLoading(false);
+        }, 2000);
     };
 
     return (
-        <main className="min-h-screen flex flex-col lg:flex-row bg-white font-jost">
+        <main className="min-h-screen flex flex-col lg:flex-row bg-[#F7F9FA] font-jost overflow-hidden">
 
-            {/* LEFT: FORM */}
-            <section className="w-full lg:w-1/2 flex justify-center px-6 py-16 lg:py-24">
-                <div className="w-full max-w-md space-y-10">
+            {/* FORM SECTION */}
+            <section className="w-full lg:w-1/2 flex items-center justify-center px-6 py-24 lg:py-32 overflow-y-auto">
+                <div className="w-full max-w-md space-y-12">
 
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-blue-600"
-                    >
-                        <ArrowLeft size={16} />
-                        Back to home
+                    <Link href="/" className="group inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 hover:text-blue-600 transition-all">
+                        <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
+                        Back to Home
                     </Link>
 
-                    <div className="space-y-4">
-                        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
-                            Join the{" "}
-                            <span className="bg-gradient-to-r from-blue-600 to-indigo-500 text-transparent bg-clip-text">
-                                Protocol
+                    <div className="space-y-6">
+                        <h1 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tighter uppercase leading-[0.85]">
+                            Join the <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">
+                                Protocol.
                             </span>
                         </h1>
-
-                        <p className="text-slate-500 text-sm leading-relaxed">
-                            Access dealer-level diagnostics and module synchronization in one secure dashboard.
+                        <p className="text-sm font-semibold text-slate-500 leading-relaxed max-w-xs">
+                            Synchronize your vehicle with industry-leading diagnostic standards.
                         </p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
-
-                        {/* Name */}
+                    <form onSubmit={handleRegister} className="space-y-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <Input icon={<User size={16} />} placeholder="First name" />
-                            <Input placeholder="Last name" />
+                            <Input icon={<User size={18} />} placeholder="FIRST NAME" />
+                            <Input placeholder="LAST NAME" />
                         </div>
 
-                        <Input icon={<Mail size={16} />} type="email" placeholder="Email address" />
+                        <Input icon={<Mail size={18} />} type="email" placeholder="EMAIL ADDRESS" />
 
-                        {/* Select */}
-                        <div className="relative">
-                            <Car className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
-                            <select className="w-full appearance-none rounded-xl border border-slate-200 bg-slate-50 px-12 py-3 text-sm focus:border-blue-600 focus:bg-white outline-none">
-                                <option>Select your chassis</option>
-                                <option>Mercedes-Benz</option>
-                                <option>BMW / MINI</option>
-                                <option>Audi / VW / VAG</option>
+                        <div className="relative group">
+                            <Car className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-blue-600 transition-colors z-10" size={18} />
+                            <select required className="w-full appearance-none rounded-2xl border border-slate-200 bg-white/70 backdrop-blur-md px-14 py-5 text-[10px] font-black tracking-widest text-slate-900 outline-none transition focus:border-blue-600 focus:bg-white cursor-pointer shadow-sm">
+                                <option value="">SELECT YOUR CHASSIS</option>
+                                <option value="mercedes">MERCEDES-BENZ</option>
+                                <option value="bmw">BMW / MINI</option>
+                                <option value="audi">AUDI / VW / VAG</option>
                             </select>
-                            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                            <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={16} />
                         </div>
 
-                        <Input icon={<Lock size={16} />} type="password" placeholder="Create password" />
+                        <Input icon={<Lock size={18} />} type="password" placeholder="CREATE PASSWORD" />
 
-                        {/* Button */}
-                        <button
-                            type="submit"
-                            disabled={isLoading}
-                            className="w-full rounded-xl bg-slate-900 py-3 text-sm font-semibold text-white hover:bg-blue-600 transition active:scale-[0.98] disabled:opacity-50"
-                        >
-                            {isLoading ? "Creating account..." : "Create account"}
-                        </button>
-
+                        <div className="pt-4">
+                            <button type="submit" disabled={isLoading} className="w-full rounded-[20px] bg-slate-900 py-6 text-[10px] font-black uppercase tracking-[0.5em] text-white hover:bg-blue-600 transition active:scale-[0.98] disabled:opacity-50 shadow-2xl shadow-slate-200">
+                                {isLoading ? "SYNCHRONIZING..." : "CREATE ACCOUNT"}
+                            </button>
+                        </div>
                     </form>
 
-                    <p className="text-sm text-center text-slate-500">
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-center text-slate-400">
                         Already registered?{" "}
-                        <Link href="/login" className="text-blue-600 hover:underline">
-                            Sign in
-                        </Link>
+                        <Link href="/login" className="text-blue-600 hover:underline">Sign in</Link>
                     </p>
                 </div>
             </section>
 
-            {/* RIGHT: VISUAL */}
-            <section className="hidden lg:flex w-1/2 bg-[#04070F] relative items-center justify-center px-12">
+            {/* VISUAL SECTION */}
+            <section className="hidden lg:flex w-1/2 bg-[#04070F] relative items-center justify-center px-16 overflow-hidden">
+                <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_rgba(37,99,235,0.15),_transparent_70%)]" />
+                <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[120px]" />
 
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent" />
-
-                <div className="relative z-10 max-w-md w-full space-y-12">
-
-                    <div className="space-y-6">
-                        <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center">
-                            <ShieldCheck className="text-white" />
+                <div className="relative z-10 w-full max-w-lg space-y-24">
+                    <div className="space-y-10">
+                        <div className="w-20 h-20 bg-blue-600 rounded-[28px] flex items-center justify-center shadow-[0_20px_50px_rgba(37,99,235,0.3)]">
+                            <ShieldCheck size={40} className="text-white" />
                         </div>
-
-                        <h2 className="text-5xl font-bold text-white leading-tight">
-                            Engineering <span className="text-blue-400">Clarity</span>
+                        <h2 className="text-7xl font-bold text-white tracking-tighter leading-[0.85] uppercase">
+                            Engineering <br /> <span className="text-blue-500">Clarity.</span>
                         </h2>
                     </div>
 
-                    {/* Testimonial */}
-                    <div className="relative h-64">
+                    <div className="relative h-72">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={testimonials[current].id}
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                                className="absolute inset-0 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 space-y-4"
+                                exit={{ opacity: 0, y: -30 }}
+                                transition={{ duration: 0.8, ease: "circOut" }}
+                                className="absolute inset-0 bg-white/[0.03] backdrop-blur-[30px] border border-white/10 rounded-[48px] p-12 space-y-8 shadow-2xl"
                             >
-                                <div className="flex gap-1 text-yellow-400">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star key={i} size={12} fill="currentColor" />
-                                    ))}
+                                <div className="flex gap-1.5 text-amber-400">
+                                    {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
                                 </div>
-
-                                <p className="text-sm text-slate-300 italic">
-                                    “{testimonials[current].quote}”
-                                </p>
-
-                                <div className="flex items-center gap-3 pt-4 border-t border-white/10">
-                                    <div className={`w-10 h-10 rounded-full ${testimonials[current].color} flex items-center justify-center text-xs font-bold text-white`}>
-                                        {testimonials[current].initials}
-                                    </div>
-
-                                    <div>
-                                        <p className="text-xs text-white font-semibold">
-                                            {testimonials[current].name}
-                                        </p>
-                                        <p className="text-[11px] text-blue-400">
-                                            {testimonials[current].vehicle}
-                                        </p>
+                                <p className="text-xl text-slate-100 italic font-medium leading-relaxed tracking-tight">“{testimonials[current].quote}”</p>
+                                <div className="flex items-center gap-5 pt-8 border-t border-white/5">
+                                    <div className={`w-14 h-14 rounded-full ${testimonials[current].color} flex items-center justify-center text-[11px] font-black text-white shadow-lg`}>{testimonials[current].initials}</div>
+                                    <div className="flex flex-col gap-1">
+                                        <span className="text-xs font-black text-white uppercase tracking-wider">{testimonials[current].name}</span>
+                                        <span className="text-[10px] text-blue-400 font-black uppercase tracking-[0.2em]">{testimonials[current].vehicle}</span>
                                     </div>
                                 </div>
                             </motion.div>
                         </AnimatePresence>
                     </div>
 
-                    {/* Features */}
-                    <ul className="space-y-4">
-                        {[
-                            "Dealer-Level Protocols",
-                            "Secure Module Sync",
-                            "Real-time Fault Tracking",
-                        ].map((item, i) => (
-                            <li key={i} className="flex items-center gap-3 text-sm text-white/70">
-                                <CheckCircle2 size={16} className="text-teal-400" />
+                    <ul className="space-y-6">
+                        {["Dealer-Level Protocols", "Secure Module Sync", "Real-time Fault Tracking"].map((item, i) => (
+                            <li key={i} className="flex items-center gap-6 text-[10px] font-black text-white/40 uppercase tracking-[0.4em]">
+                                <CheckCircle2 size={20} className="text-teal-400" />
                                 {item}
                             </li>
                         ))}
@@ -208,22 +180,19 @@ export default function RegisterPage() {
     );
 }
 
-/* Reusable Input */
-function Input({
-    icon,
-    ...props
-}: any) {
+// 3. INTERNAL HELPER COMPONENT (NOT EXPORT DEFAULT)
+function Input({ icon, ...props }: any) {
     return (
-        <div className="relative">
+        <div className="relative group">
             {icon && (
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                <span className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-blue-600 transition-colors z-10">
                     {icon}
                 </span>
             )}
             <input
                 {...props}
                 required
-                className={`w-full rounded-xl border border-slate-200 bg-slate-50 py-3 text-sm outline-none transition focus:border-blue-600 focus:bg-white ${icon ? "pl-11 pr-4" : "px-4"
+                className={`w-full rounded-2xl border border-slate-200 bg-white/70 backdrop-blur-md py-5 text-[10px] font-black tracking-widest text-slate-900 outline-none transition focus:border-blue-600 focus:bg-white placeholder:text-slate-400 shadow-sm ${icon ? "pl-14 pr-6" : "px-6"
                     }`}
             />
         </div>

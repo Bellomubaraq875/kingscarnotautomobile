@@ -14,7 +14,8 @@ import {
   X,
   ChevronRight,
   Settings,
-  ShieldCheck
+  ShieldCheck,
+  LogIn // Fixed: Correctly imported icon
 } from 'lucide-react';
 
 const Navbar = () => {
@@ -41,8 +42,9 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+
       {/* 1. TOP UTILITY SECTION */}
-      <div className="hidden md:block bg-[#0a0f1d] text-gray-400 py-2 px-6 border-b border-white/5">
+      <div className="hidden md:block bg-[#0a0f1d] text-gray-400 py-2 px-6 border-b border-white/5 font-jost">
         <div className="max-w-[1400px] mx-auto flex justify-between items-center text-[10px] uppercase tracking-[0.2em] font-black">
           <div className="flex gap-8 items-center">
             <Link href="/about" className="hover:text-blue-400 transition-colors">About Us</Link>
@@ -55,17 +57,19 @@ const Navbar = () => {
               <LayoutDashboard size={11} className="text-blue-500" /> Client Portal
             </Link>
             <span className="w-[1px] h-3 bg-white/10" />
-            <button className="flex items-center gap-1.5 hover:text-red-400 transition-colors">
-              <LogOut size={11} /> Logout
-            </button>
+
+            {/* FIXED: Login now links to /login with correct Icon component */}
+            <Link href="/login" className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <LogIn size={11} className="text-blue-500" /> Login
+            </Link>
           </div>
         </div>
       </div>
 
       {/* 2. MAIN NAVIGATION */}
       <nav className={`transition-all duration-500 border-b ${scrolled
-          ? 'bg-white/95 backdrop-blur-xl border-gray-200/50 py-3 shadow-xl'
-          : 'bg-white border-transparent py-4 md:py-6'
+        ? 'bg-white/95 backdrop-blur-xl border-gray-200/50 py-3 shadow-xl'
+        : 'bg-white border-transparent py-4 md:py-6'
         }`}>
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex justify-between items-center">
 
@@ -111,7 +115,7 @@ const Navbar = () => {
                       </div>
                       <div className="grid grid-cols-2 gap-x-8 gap-y-1">
                         {services.map((item) => (
-                          <Link key={item} href="#" className="flex items-center py-2 text-[12px] font-bold text-slate-600 hover:text-blue-600 group/item transition-all">
+                          <Link key={item} href={`/services/${item.toLowerCase().replace(/[\/\s]/g, '-')}`} className="flex items-center py-2 text-[12px] font-bold text-slate-600 hover:text-blue-600 group/item transition-all">
                             <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mr-3 opacity-0 group-hover/item:opacity-100 transition-opacity" />
                             {item}
                           </Link>
@@ -161,7 +165,7 @@ const Navbar = () => {
                   <p className="text-[10px] font-black tracking-[0.3em] text-gray-400 uppercase">Diagnostics</p>
                   <div className="grid gap-4">
                     {services.slice(0, 4).map(s => (
-                      <Link key={s} href="#" className="flex items-center justify-between text-base font-bold text-slate-800">
+                      <Link key={s} href={`/services/${s.toLowerCase().replace(/[\/\s]/g, '-')}`} className="flex items-center justify-between text-base font-bold text-slate-800">
                         {s} <ChevronRight size={16} className="text-blue-200" />
                       </Link>
                     ))}

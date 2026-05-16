@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ecuRepairs } from '../data/ecuRepairData';
+import { ecuRepairs } from '@/app/data/ecuRepairData';
 import { Cpu, ShieldCheck, ArrowRight, Activity } from 'lucide-react';
 
 export default function EcuRepairGallery() {

@@ -51,7 +51,7 @@ export default function KeyDetailPage() {
                         </div>
 
                         <div className="pt-8">
-                            <Link href="/register">
+                            <Link href="/contact">
                                 <button className="bg-slate-900 text-white px-12 py-6 rounded-2xl text-[10px] font-black uppercase tracking-[0.4em] hover:bg-blue-600 transition-all shadow-2xl shadow-blue-100">
                                     Book Restoration
                                 </button>

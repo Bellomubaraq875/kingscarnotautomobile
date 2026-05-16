@@ -25,8 +25,8 @@ const Footer = () => {
       { name: 'Founder', path: '/founder' }
     ],
     Services: [
-      { name: 'ECU Repair', path: '/services/ecu-repair' },
-      { name: 'Key Programming', path: '/services/key-repair' },
+      { name: 'ECU Repair', path: '/ecu-repair' },
+      { name: 'Key Programming', path: '/key-repair' },
       { name: 'Spare Parts', path: '/spare-parts' },
       { name: 'Software Solutions', path: '/software' },
     ],

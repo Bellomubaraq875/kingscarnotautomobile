@@ -36,7 +36,7 @@ const ContactPage = () => {
         <main className="min-h-screen bg-white pb-20">
 
             {/* 1. CINEMATIC HERO SECTION */}
-            <section className="relative w-full h-[100vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+            <section className="relative w-full h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
                 <Image
                     src="/images/revanmp.jpg" 
                     alt="Technical Diagnostics Hero"
@@ -84,7 +84,7 @@ const ContactPage = () => {
                             </div>
                             <div className="w-full h-72 bg-slate-100 rounded-[32px] overflow-hidden border border-slate-100 relative grayscale hover:grayscale-0 transition-all duration-700 shadow-inner">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126588.24644086036!2d3.8184560413554035!3d7.400511475753063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10398d77eeff3f67%3A0x132a8732049836f3!2sIbadan!5e0!3m2!1sen!2sng!4v1713289000000!5m2!1sen!2sng"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.275065406734!2d6.689620674261748!3d6.227415126535541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1043f3000d10a5b9%3A0x6c65b41ae4e5df59!2sNorth%20West%20Filling%20Station!5e0!3m2!1sen!2sng!4v1715858000000!5m2!1sen!2sng"
                                     width="100%"
                                     height="100%"
                                     style={{ border: 0 }}

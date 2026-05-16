@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { mbKeys } from '@/data/keyRepairData';
+import { mbKeys } from '../data/keyRepairData';
 import { Key } from 'lucide-react';
 
 export default function KeyRepairPage() {

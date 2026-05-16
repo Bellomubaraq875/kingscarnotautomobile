@@ -4,7 +4,7 @@ import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { mbKeys } from '@/data/keyRepairData';
+import { mbKeys } from '@/app/data/keyRepairData';
 import { ArrowLeft, ShieldCheck, Zap } from 'lucide-react';
 
 export default function KeyDetailPage() {

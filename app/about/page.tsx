@@ -67,7 +67,7 @@ const About = () => {
             <div className="fixed inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,_#f0f9ff_0%,_#f0fff4_30%,_#ffffff_70%)]" />
 
             {/* 2. HERO SECTION */}
-            <section className="relative z-10 w-full h-[100vh] flex items-center overflow-hidden">
+            <section className="relative z-10 w-full h-[50vh] flex items-center overflow-hidden">
                 <Image
                     src="/images/revanmp.jpg"
                     alt="KingsCarNot Workspace"

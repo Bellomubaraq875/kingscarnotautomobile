@@ -140,6 +140,7 @@ const Navbar = () => {
             <button className="bg-slate-900 text-white px-5 md:px-8 py-2.5 md:py-3.5 rounded-full text-[9px] md:text-[10px] font-black tracking-[0.2em] hover:bg-blue-600 transition-all active:scale-95 shadow-lg shadow-slate-200">
               <span className="hidden sm:inline">BOOK APPOINTMENT</span>
               <span className="sm:hidden text-[8px]">BOOK NOW</span>
+              
             </button>
           </div>
         </div>

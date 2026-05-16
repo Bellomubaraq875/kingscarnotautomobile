@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Cpu, Terminal, ShieldCheck, Download, ExternalLink, Zap } from 'lucide-react';
-import { softwareSuites } from '@/data/softwareData';
+import { softwareSuites } from '@/app/data/softwareData';
 
 export default function SoftwarePage() {
     return (

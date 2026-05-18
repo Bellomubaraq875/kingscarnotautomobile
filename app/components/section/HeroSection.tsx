@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ArrowRight, ShieldCheck, Cpu, Zap, Key, Activity } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 const heroSlides = [
   {
@@ -110,15 +111,20 @@ const HeroSection = () => {
             <p className="text-lg md:text-2xl text-blue-100/60 leading-relaxed font-medium max-w-2xl">
               {heroSlides[current].description}
             </p>
-
+            
             <div className="flex flex-wrap gap-5 pt-6">
-              <button className="group flex items-center gap-3 bg-blue-600 text-white px-10 py-5 rounded-2xl text-[10px] font-black tracking-[0.2em] hover:bg-white hover:text-[#00215E] transition-all duration-500 shadow-2xl">
-                GET STARTED
-                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-              </button>
-              <button className="flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 text-white px-10 py-5 rounded-2xl text-[10px] font-black tracking-[0.2em] hover:bg-white/10 transition-all">
-                VIEW SERVICES
-              </button>
+              <Link href="/register">
+                <button className="group flex items-center gap-3 bg-blue-600 text-white px-10 py-5 rounded-2xl text-[10px] font-black tracking-[0.2em] hover:bg-white hover:text-[#00215E] transition-all duration-500 shadow-2xl">
+                  GET STARTED
+                  <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                </button>
+              </Link>
+
+              <Link href="/services">
+                <button className="flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 text-white px-10 py-5 rounded-2xl text-[10px] font-black tracking-[0.2em] hover:bg-white/10 transition-all">
+                  VIEW SERVICES
+                </button>
+              </Link>
             </div>
           </motion.div>
         </AnimatePresence>

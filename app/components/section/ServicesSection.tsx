@@ -9,7 +9,8 @@ import {
     Gauge,
     Key,
     CarFront,
-    ArrowUpRight
+    ArrowUpRight,
+    Link
 } from 'lucide-react';
 
 const services = [
@@ -71,9 +72,11 @@ const ServicesSection = () => {
                             and luxury vehicle makes and models.
                         </p>
                     </div>
-                    <button className="text-[12px] font-black tracking-widest text-slate-900 border-b-2 border-slate-900 pb-1 hover:text-blue-600 hover:border-blue-600 transition-all">
-                        EXPLORE ALL SERVICES
-                    </button>
+                    <Link href="/services">
+                        <button className="text-[12px] font-black tracking-widest text-slate-900 border-b-2 border-slate-900 pb-1 hover:text-blue-600 hover:border-blue-600 transition-all">
+                            EXPLORE ALL SERVICES
+                        </button>
+                    </Link>
                 </div>
 
                 {/* Services Grid */}

@@ -5,7 +5,8 @@ import { motion } from 'framer-motion';
 import {
     Cpu, Database, Search, BookOpen, Wrench, Key,
     Laptop, Unlock, Package, Zap, RefreshCcw, Terminal,
-    ArrowUpRight
+    ArrowUpRight,
+    Link
 } from 'lucide-react';
 
 const solutionData = [
@@ -46,9 +47,11 @@ const SoftwareSection = () => {
                             We bridge the gap between your workshop and factory servers.
                         </p>
                     </div>
-                    <button className="hidden lg:flex items-center gap-2 text-white font-bold text-xs tracking-widest uppercase border border-white/10 px-8 py-4 rounded-full hover:bg-white hover:text-black transition-all">
-                        Browse All <ArrowUpRight size={16} />
-                    </button>
+                    <Link href="/software">
+                        <button className="hidden lg:flex items-center gap-2 text-white font-bold text-xs tracking-widest uppercase border border-white/10 px-8 py-4 rounded-full hover:bg-white hover:text-black transition-all">
+                            Browse All <ArrowUpRight size={16} />
+                        </button>
+                    </Link>
                 </div>
 
                 {/* The Showroom Grid */}

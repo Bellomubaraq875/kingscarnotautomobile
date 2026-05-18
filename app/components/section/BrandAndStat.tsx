@@ -10,7 +10,7 @@ const Counter = ({ value, duration = 2 }: { value: string; duration?: number }) 
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
-    // Clean the string (e.g., "5,000+" becomes 5000)
+   
     const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
     const suffix = value.replace(/[0-9,]/g, '');
 
@@ -73,7 +73,7 @@ const BrandsAndStats = () => {
                     <div className="relative flex overflow-hidden py-10">
                         <motion.div
                             className="flex gap-20 items-center whitespace-nowrap"
-                            animate={{ x: [0, -1920] }} // Adjust based on total width
+                            animate={{ x: [0, -1920] }} 
                             transition={{
                                 duration: 40,
                                 repeat: Infinity,

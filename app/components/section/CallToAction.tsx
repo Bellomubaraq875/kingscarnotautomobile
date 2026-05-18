@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { UserPlus, ArrowRight, ShieldCheck, Zap, Bell } from 'lucide-react';
+import { UserPlus, ArrowRight, ShieldCheck, Zap, Bell, Link } from 'lucide-react';
+// import { Link } from 'next/link';
 
 const StandoutCTA = () => {
     return (
@@ -68,11 +69,13 @@ const StandoutCTA = () => {
                                 <h3 className="text-2xl font-black text-white tracking-tight uppercase">Create Profile</h3>
                                 <p className="text-gray-500 text-sm">Takes less than 60 seconds.</p>
                             </div>
-
-                            <button className="w-full group relative flex items-center justify-center gap-4 bg-white text-[#020617] py-5 rounded-2xl font-black tracking-[0.2em] uppercase text-sm hover:bg-blue-600 hover:text-white transition-all duration-500 shadow-xl shadow-white/5">
-                                Start For Free
-                                <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
-                            </button>
+                            
+                            <Link href="/register">
+                                <button className="w-full group relative flex items-center justify-center gap-4 bg-white text-[#020617] py-5 rounded-2xl font-black tracking-[0.2em] uppercase text-sm hover:bg-blue-600 hover:text-white transition-all duration-500 shadow-xl shadow-white/5">
+                                    Start For Free
+                                    <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+                                </button>
+                            </Link>
 
                             <div className="flex justify-center gap-8 pt-4 border-t border-white/5">
                                 <div className="text-center">

@@ -137,11 +137,12 @@ const Navbar = () => {
             <button className="hidden xl:flex items-center gap-2 text-[10px] font-black text-slate-500 hover:text-slate-900 transition-colors">
               <Phone size={14} className="text-blue-600" /> +234 Support
             </button>
+             <Link href= "/contact">
             <button className="bg-slate-900 text-white px-5 md:px-8 py-2.5 md:py-3.5 rounded-full text-[9px] md:text-[10px] font-black tracking-[0.2em] hover:bg-blue-600 transition-all active:scale-95 shadow-lg shadow-slate-200">
               <span className="hidden sm:inline">BOOK APPOINTMENT</span>
               <span className="sm:hidden text-[8px]">BOOK NOW</span>
-              <Link href="/contact" />
             </button>
+            </Link>
           </div>
         </div>
       </nav>

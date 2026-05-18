@@ -10,8 +10,8 @@ import {
     Key,
     CarFront,
     ArrowUpRight,
-    Link
 } from 'lucide-react';
+import Link from 'next/link';
 
 const services = [
     {

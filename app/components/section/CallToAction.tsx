@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { UserPlus, ArrowRight, ShieldCheck, Zap, Bell, Link } from 'lucide-react';
-// import { Link } from 'next/link';
+import { UserPlus, ArrowRight, ShieldCheck, Zap, Bell } from 'lucide-react';
+import  Link  from 'next/link';
 
 const StandoutCTA = () => {
     return (

@@ -6,8 +6,8 @@ import {
     Cpu, Database, Search, BookOpen, Wrench, Key,
     Laptop, Unlock, Package, Zap, RefreshCcw, Terminal,
     ArrowUpRight,
-    Link
 } from 'lucide-react';
+import Link from 'next/link';
 
 const solutionData = [
     { icon: <Cpu />, title: 'XENTRY Diagnostics', desc: 'Latest Mercedes-Benz XENTRY diagnostic software with full system access for cars and commercial vehicles.' },

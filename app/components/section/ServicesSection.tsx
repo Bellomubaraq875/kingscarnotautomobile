@@ -12,43 +12,51 @@ import {
     ArrowUpRight,
 } from 'lucide-react';
 import Link from 'next/link';
+import { hr } from 'framer-motion/client';
+import { HiRefresh } from 'react-icons/hi';
 
 const services = [
     {
         title: "Advanced Diagnostics",
         description: "Full-spectrum OBD-II and manufacturer-level diagnostic scans using dealership-grade tools.",
         icon: <Cpu className="w-6 h-6" />,
-        color: "from-blue-500 to-cyan-400"
+        color: "from-blue-500 to-cyan-400",
+        href: "/services/diagnostics"
     },
     {
         title: "Vehicle Coding",
         description: "Module coding and feature activation for all major brands. Personalize your driving experience.",
         icon: <Code2 className="w-6 h-6" />,
-        color: "from-indigo-500 to-purple-400"
+        color: "from-indigo-500 to-purple-400",
+        href: "/services/coding"
     },
     {
         title: "ECU Programming",
         description: "Flash programming, software updates, and ECU calibration for peak engine performance.",
         icon: <Zap className="w-6 h-6" />,
-        color: "from-orange-500 to-red-400"
+        color: "from-orange-500 to-red-400",
+        href: "/services/ecu-programming"
     },
     {
         title: "Odometer Correction",
         description: "Legal odometer recalibration for instrument cluster replacements and digital dashboard synchronization.",
         icon: <Gauge className="w-6 h-6" />,
-        color: "from-green-500 to-emerald-400"
+        color: "from-green-500 to-emerald-400",
+        href: "/services/odometer-correction"
     },
     {
         title: "Key Programming",
         description: "Transponder key programming, immobilizer reset, and smart key setup for security systems.",
         icon: <Key className="w-6 h-6" />,
-        color: "from-blue-600 to-indigo-500"
+        color: "from-blue-600 to-indigo-500",
+        href: "/services/key-programming"
     },
     {
         title: "Electrical Diagnostics",
         description: "Wiring fault tracing, CAN bus analysis, and sensor calibration to resolve complex issues.",
         icon: <CarFront className="w-6 h-6" />,
-        color: "from-slate-700 to-slate-900"
+        color: "from-slate-700 to-slate-900",
+        href: "/services/electrical-diagnostics"
     }
 ];
 
@@ -105,9 +113,11 @@ const ServicesSection = () => {
                                     </p>
                                 </div>
 
-                                <button className="flex items-center gap-2 text-[11px] font-black tracking-[0.1em] text-slate-400 group-hover:text-blue-600 transition-all">
-                                    LEARN MORE <ArrowUpRight size={14} />
-                                </button>
+                                <Link href={service.href}>
+                                    <button className="flex items-center gap-2 text-[11px] font-black tracking-[0.1em] text-slate-400 group-hover:text-blue-600 transition-all">
+                                        LEARN MORE <ArrowUpRight size={14} />
+                                    </button>
+                                </Link>
                             </div>
 
                             {/* Bottom Decorative Line */}

@@ -1,32 +1,20 @@
-// src/app/page.tsx
-'use client'
-
+import DriveHero from "./components/motion/DriveHero";
 import BrandsAndStats from "./components/section/BrandAndStat";
-import HeroSection from "./components/section/HeroSection";
+import ServicesSection from "./components/section/ServicesSection";
 import SoftwareSection from "./components/section/SoftwareSection";
 import WhyChooseUs from "./components/section/WhyChooseUs";
 import CallToAction from "./components/section/CallToAction";
-import ServicesSection from "./components/section/ServicesSection";
-import Navbar from "./components/layout/Navbar";
-import Footer from "./components/layout/Footer";
-import { Suspense } from "react";
-
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      {/* <Navbar /> */}
-      <main className="flex flex-col">
-          <HeroSection/>
-          <BrandsAndStats/>
-          <ServicesSection/>
-          <SoftwareSection/>
-          <WhyChooseUs/>
-          <CallToAction/>
-        {/* </Suspense> */}
-
-        {/* <Footer /> */}
-      </main>
+    <div className="flex flex-col">
+      <DriveHero />
+      <div id="after-drive" />
+      <BrandsAndStats />
+      <ServicesSection />
+      <SoftwareSection />
+      <WhyChooseUs />
+      <CallToAction />
     </div>
   );
 }

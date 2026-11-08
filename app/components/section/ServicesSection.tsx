@@ -1,133 +1,135 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import {
-    Cpu,
-    Code2,
-    Zap,
-    Gauge,
-    Key,
-    CarFront,
-    ArrowUpRight,
-} from 'lucide-react';
-import Link from 'next/link';
-import { hr } from 'framer-motion/client';
-import { HiRefresh } from 'react-icons/hi';
+import React from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowUpRight, CarFront, Code2, Cpu, Gauge, Key, Zap, type LucideIcon } from "lucide-react";
 
-const services = [
-    {
-        title: "Advanced Diagnostics",
-        description: "Full-spectrum OBD-II and manufacturer-level diagnostic scans using dealership-grade tools.",
-        icon: <Cpu className="w-6 h-6" />,
-        color: "from-blue-500 to-cyan-400",
-        href: "/services/diagnostics"
-    },
-    {
-        title: "Vehicle Coding",
-        description: "Module coding and feature activation for all major brands. Personalize your driving experience.",
-        icon: <Code2 className="w-6 h-6" />,
-        color: "from-indigo-500 to-purple-400",
-        href: "/services/coding"
-    },
-    {
-        title: "ECU Programming",
-        description: "Flash programming, software updates, and ECU calibration for peak engine performance.",
-        icon: <Zap className="w-6 h-6" />,
-        color: "from-orange-500 to-red-400",
-        href: "/services/ecu-programming"
-    },
-    {
-        title: "Odometer Correction",
-        description: "Legal odometer recalibration for instrument cluster replacements and digital dashboard synchronization.",
-        icon: <Gauge className="w-6 h-6" />,
-        color: "from-green-500 to-emerald-400",
-        href: "/services/odometer-correction"
-    },
-    {
-        title: "Key Programming",
-        description: "Transponder key programming, immobilizer reset, and smart key setup for security systems.",
-        icon: <Key className="w-6 h-6" />,
-        color: "from-blue-600 to-indigo-500",
-        href: "/services/key-programming"
-    },
-    {
-        title: "Electrical Diagnostics",
-        description: "Wiring fault tracing, CAN bus analysis, and sensor calibration to resolve complex issues.",
-        icon: <CarFront className="w-6 h-6" />,
-        color: "from-slate-700 to-slate-900",
-        href: "/services/electrical-diagnostics"
-    }
+type Service = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  href: string;
+  span: string; // grid column span on large screens
+  bg: string;
+  fg: string;
+  chip: string;
+};
+
+const services: Service[] = [
+  {
+    title: "Advanced diagnostics",
+    description: "Full-spectrum OBD-II and manufacturer-level scans with dealership-grade tools. We trace the real fault, not just the warning light.",
+    icon: Cpu,
+    href: "/services/diagnostics",
+    span: "lg:col-span-4",
+    bg: "#8ee02b",
+    fg: "#0b2a4f",
+    chip: "#0b2a4f",
+  },
+  {
+    title: "Vehicle coding",
+    description: "Module coding and feature activation for all major brands.",
+    icon: Code2,
+    href: "/services/coding",
+    span: "lg:col-span-2",
+    bg: "#0b2a4f",
+    fg: "#ffffff",
+    chip: "#8ee02b",
+  },
+  {
+    title: "ECU programming",
+    description: "Flashing, software updates and calibration for peak engine performance.",
+    icon: Zap,
+    href: "/services/ecu-programming",
+    span: "lg:col-span-2",
+    bg: "#ffc81f",
+    fg: "#0b2a4f",
+    chip: "#0b2a4f",
+  },
+  {
+    title: "Odometer correction",
+    description: "Legal recalibration for cluster replacements and digital dash sync.",
+    icon: Gauge,
+    href: "/services/odometer-correction",
+    span: "lg:col-span-2",
+    bg: "#8fdcff",
+    fg: "#0b2a4f",
+    chip: "#0b2a4f",
+  },
+  {
+    title: "Key programming",
+    description: "Transponder keys, immobilizer reset and smart key set-up.",
+    icon: Key,
+    href: "/services/key-programming",
+    span: "lg:col-span-2",
+    bg: "#ffffff",
+    fg: "#0b2a4f",
+    chip: "#2f9e2f",
+  },
+  {
+    title: "Electrical diagnostics",
+    description: "Wiring fault tracing, CAN bus analysis and sensor calibration. The jobs other workshops give up on, we take apart until it makes sense.",
+    icon: CarFront,
+    href: "/services/electrical-diagnostics",
+    span: "lg:col-span-6",
+    bg: "#14612b",
+    fg: "#ffffff",
+    chip: "#8ee02b",
+  },
 ];
 
-const ServicesSection = () => {
-    return (
-        <section className="bg-[#f8fafc] py-24 overflow-hidden">
-            <div className="w-[80%] max-w-[1400px] mx-auto">
+const ServicesSection = () => (
+  <section className="bg-[#f6fcec] pb-28 pt-8">
+    <div className="mx-auto w-[88%] max-w-[1400px]">
+      <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div>
+          <h2 className="font-display max-w-2xl text-4xl font-extrabold leading-[1.02] text-[#0b2a4f] md:text-6xl">
+            What we repair, program and set up
+          </h2>
+          <p className="mt-4 max-w-xl text-lg font-medium text-[#0b2a4f]/70">
+            Six core services for luxury and high-performance vehicles. Pick the one that matches your problem, or send us the symptoms.
+          </p>
+        </div>
+        <Link href="/services" className="w-fit rounded-full border-2 border-[#0b2a4f] px-6 py-3 text-sm font-bold text-[#0b2a4f] transition hover:bg-[#0b2a4f] hover:text-white">
+          All services
+        </Link>
+      </div>
 
-                {/* Header Section */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-                    <div className="space-y-4">
-                        <div className="flex items-center gap-3">
-                            <span className="h-[2px] w-8 bg-blue-600"></span>
-                            <span className="text-[11px] font-black tracking-[0.3em] text-blue-600 uppercase">Expert Solutions</span>
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter">
-                            Our Premium Services
-                        </h2>
-                        <p className="text-slate-500 max-w-xl font-medium leading-relaxed">
-                            Comprehensive diagnostics and programming solutions tailored for high-performance
-                            and luxury vehicle makes and models.
-                        </p>
-                    </div>
-                    <Link href="/services">
-                        <button className="text-[12px] font-black tracking-widest text-slate-900 border-b-2 border-slate-900 pb-1 hover:text-blue-600 hover:border-blue-600 transition-all">
-                            EXPLORE ALL SERVICES
-                        </button>
-                    </Link>
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-6">
+        {services.map((s, i) => {
+          const Icon = s.icon;
+          return (
+            <motion.div
+              key={s.title}
+              initial={{ opacity: 0, scale: 0.94, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
+              className={`${s.span} ${i === 5 ? "md:col-span-2" : ""}`}
+            >
+              <Link
+                href={s.href}
+                className="group relative flex h-full min-h-[240px] flex-col justify-between overflow-hidden rounded-[32px] p-8 shadow-[0_8px_0_rgba(11,42,79,0.12)] transition-transform duration-300 hover:-translate-y-1 md:p-10"
+                style={{ background: s.bg, color: s.fg }}
+              >
+                <div className="flex items-start justify-between">
+                  <span className="grid h-14 w-14 place-items-center rounded-2xl" style={{ background: s.chip, color: s.chip === "#0b2a4f" || s.chip === "#2f9e2f" ? "#fff" : "#0b2a4f" }}>
+                    <Icon size={26} aria-hidden />
+                  </span>
+                  <ArrowUpRight className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" size={26} aria-hidden />
                 </div>
-
-                {/* Services Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {services.map((service, index) => (
-                        <motion.div
-                            key={index}
-                            whileHover={{ y: -10 }}
-                            className="group relative bg-white rounded-[32px] p-10 shadow-[0_20px_50px_rgba(0,0,0,0.04)] border border-slate-100 transition-all duration-500 overflow-hidden"
-                        >
-                            {/* Background Accent Glow */}
-                            <div className="absolute -right-8 -top-8 w-32 h-32 bg-slate-50 rounded-full group-hover:bg-blue-50 transition-colors duration-500" />
-
-                            <div className="relative z-10 space-y-6">
-                                {/* Icon Box */}
-                                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-500`}>
-                                    {service.icon}
-                                </div>
-
-                                <div className="space-y-3">
-                                    <h3 className="text-xl font-bold text-slate-900 tracking-tight group-hover:text-blue-600 transition-colors">
-                                        {service.title}
-                                    </h3>
-                                    <p className="text-slate-500 text-sm leading-relaxed font-medium">
-                                        {service.description}
-                                    </p>
-                                </div>
-
-                                <Link href={service.href}>
-                                    <button className="flex items-center gap-2 text-[11px] font-black tracking-[0.1em] text-slate-400 group-hover:text-blue-600 transition-all">
-                                        LEARN MORE <ArrowUpRight size={14} />
-                                    </button>
-                                </Link>
-                            </div>
-
-                            {/* Bottom Decorative Line */}
-                            <div className="absolute bottom-0 left-0 w-0 h-1 bg-blue-600 group-hover:w-full transition-all duration-500" />
-                        </motion.div>
-                    ))}
+                <div className="mt-10 max-w-xl">
+                  <h3 className="font-display text-2xl font-extrabold md:text-3xl">{s.title}</h3>
+                  <p className="mt-3 text-base font-medium opacity-80">{s.description}</p>
                 </div>
-            </div>
-        </section>
-    );
-};
+              </Link>
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+);
 
 export default ServicesSection;

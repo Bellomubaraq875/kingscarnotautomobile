@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Jost } from "next/font/google";
+import { Bricolage_Grotesque, Figtree } from "next/font/google";
 import "./globals.css";
 
 import { ToastContainer } from "react-toastify";
@@ -7,10 +7,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 import LayoutWrapper from "./components/layout/LayoutWrapper";
 
-const jost = Jost({
+const display = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-jost",
+  weight: ["600", "700", "800"],
+  variable: "--font-bricolage",
+  display: "swap",
+});
+
+const body = Figtree({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-figtree",
   display: "swap",
 });
 
@@ -31,9 +38,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${jost.variable}`}>
+    <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body
-        className={`${jost.className} antialiased bg-white text-slate-900 selection:bg-blue-100 selection:text-blue-900`}
+        className="antialiased"
       >
         <LayoutWrapper>
           {children}

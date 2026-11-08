@@ -1,103 +1,71 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import {
-    Cpu, Database, Search, BookOpen, Wrench, Key,
-    Laptop, Unlock, Package, Zap, RefreshCcw, Terminal,
-    ArrowUpRight,
-} from 'lucide-react';
-import Link from 'next/link';
+  ArrowUpRight, BookOpen, Cpu, Database, Laptop, Package, RefreshCcw,
+  Search, Terminal, Unlock, Wrench, Zap, Key, type LucideIcon,
+} from "lucide-react";
 
-const solutionData = [
-    { icon: <Cpu />, title: 'XENTRY Diagnostics', desc: 'Latest Mercedes-Benz XENTRY diagnostic software with full system access for cars and commercial vehicles.' },
-    { icon: <Database />, title: 'DAS Standalone', desc: 'Diagnose-Assistenz-System with offline mode support, special functions, and developer capabilities.' },
-    { icon: <Search />, title: 'Alldata', desc: 'Online subscription for all vehicle manufacturers—repair manuals, wiring diagrams, and TSBs.' },
-    { icon: <BookOpen />, title: 'Haynes', desc: 'Comprehensive repair software manual covering all vehicle makes and models with detailed service procedures.' },
-    { icon: <Wrench />, title: 'Mitchell & Techstream', desc: 'Mitchell pro repair data plus Techstream for Toyota/Lexus—full repair software manuals.' },
-    { icon: <Key />, title: 'ElsaWin', desc: 'Official workshop software for VAG Group: VW, Audi, Skoda, SEAT, and Porsche—parts catalogs and wiring.' },
-    { icon: <Laptop />, title: 'BMW Full Diagnostics PC', desc: 'Complete PC-based diagnostics toolkits for BMW—hardware and software configured for full system coverage.' },
-    { icon: <Unlock />, title: 'Offline Key Programming', desc: 'Transponder key teach-in, SAM assignment, and immobilizer solutions for Smart and Mercedes platforms.' },
-    { icon: <Package />, title: 'Vediamo, DTS & Monaco', desc: 'Advanced automotive programming tools—Vediamo, DTS, and Monaco for deep ECU coding.' },
-    { icon: <Zap />, title: 'ECU Flash & Calibration', desc: 'Flash programming data, FDOK corrections, SCR/AdBlue solutions, and emissions calibration files.' },
-    { icon: <RefreshCcw />, title: 'Software Updates', desc: 'All-in-one patchers, simple activation tools, and quarterly software updates for seamless operation.' },
-    { icon: <Terminal />, title: 'Developer Mode', desc: 'Unlocked control unit adaptations, VMAX settings, transmission routines, and advanced developer tools.' },
+const tools: { icon: LucideIcon; title: string; desc: string }[] = [
+  { icon: Cpu, title: "XENTRY Diagnostics", desc: "Latest Mercedes-Benz diagnostics with full system access for cars and commercial vehicles." },
+  { icon: Database, title: "DAS Standalone", desc: "Offline mode, special functions and developer capabilities." },
+  { icon: Search, title: "Alldata", desc: "Repair manuals, wiring diagrams and TSBs for all manufacturers." },
+  { icon: BookOpen, title: "Haynes", desc: "Service procedures for all makes and models." },
+  { icon: Wrench, title: "Mitchell & Techstream", desc: "Mitchell repair data plus Techstream for Toyota and Lexus." },
+  { icon: Key, title: "ElsaWin", desc: "VAG workshop software: VW, Audi, Skoda, SEAT, Porsche." },
+  { icon: Laptop, title: "BMW Full Diagnostics PC", desc: "PC toolkits with hardware and software set up for full BMW coverage." },
+  { icon: Unlock, title: "Offline key programming", desc: "Transponder teach-in, SAM assignment and immobilizer solutions." },
+  { icon: Package, title: "Vediamo, DTS & Monaco", desc: "Deep ECU coding and programming tools." },
+  { icon: Zap, title: "ECU flash & calibration", desc: "Flash data, FDOK corrections, SCR/AdBlue and emissions files." },
+  { icon: RefreshCcw, title: "Software updates", desc: "Patchers, activation tools and quarterly updates." },
+  { icon: Terminal, title: "Developer mode", desc: "Control unit adaptations, VMAX settings and transmission routines." },
 ];
 
-const SoftwareSection = () => {
-    return (
-        <section className="relative py-32 px-6 overflow-hidden bg-[#020617]">
-            {/* High-Class Gradient Background */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,_#1e3a8a_0%,_#020617_100%)] opacity-40 pointer-events-none" />
+const SoftwareSection = () => (
+  <section className="bg-[#0b2a4f] py-28 text-white">
+    <div className="mx-auto grid w-[88%] max-w-[1400px] gap-14 lg:grid-cols-[minmax(0,380px)_1fr]">
+      <div className="lg:sticky lg:top-32 lg:self-start">
+        <h2 className="font-display text-4xl font-extrabold leading-[1.02] md:text-6xl">
+          OEM-level diagnostic software
+        </h2>
+        <p className="mt-5 text-lg font-medium text-white/70">
+          Original manufacturer software, custom patchers and developer tools, installed on your laptop or workshop PC and kept current.
+        </p>
+        <Link href="/software" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#8ee02b] px-7 py-4 text-sm font-bold text-[#0b2a4f] transition hover:bg-white">
+          Browse the catalogue <ArrowUpRight size={18} aria-hidden />
+        </Link>
+        <p className="mt-8 flex items-center gap-3 text-sm font-semibold text-white/60">
+          <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-[#8ee02b]" /> Remote installation servers online
+        </p>
+      </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto">
-
-                {/* Modern Editorial Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
-                    <div className="max-w-3xl space-y-6">
-                        <div className="flex items-center gap-3">
-                            <span className="h-[2px] w-10 bg-blue-500"></span>
-                            <span className="text-[10px] font-black tracking-[0.4em] text-blue-400 uppercase">Software & Solutions</span>
-                        </div>
-                        <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none">
-                            OEM-Level <br /> <span className="text-blue-500">Diagnostic Software</span>
-                        </h2>
-                        <p className="text-slate-400 text-lg font-medium leading-relaxed max-w-2xl">
-                            Secured access to original manufacturer software, custom patchers, and developer tools.
-                            We bridge the gap between your workshop and factory servers.
-                        </p>
-                    </div>
-                    <Link href="/software">
-                        <button className="hidden lg:flex items-center gap-2 text-white font-bold text-xs tracking-widest uppercase border border-white/10 px-8 py-4 rounded-full hover:bg-white hover:text-black transition-all">
-                            Browse All <ArrowUpRight size={16} />
-                        </button>
-                    </Link>
-                </div>
-
-                {/* The Showroom Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {solutionData.map((item, i) => (
-                        <motion.div
-                            key={i}
-                            whileHover={{ y: -5 }}
-                            className="group relative bg-white/[0.03] backdrop-blur-xl border border-white/5 p-8 rounded-[40px] hover:bg-white/[0.07] hover:border-blue-500/30 transition-all duration-500"
-                        >
-                            <div className="space-y-6">
-                                {/* Minimalist Icon Block */}
-                                <div className="w-12 h-12 rounded-2xl bg-blue-600/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
-                                    {/* FIXED: Added type assertion for size property to pass TypeScript build */}
-                                    {React.cloneElement(item.icon as React.ReactElement<{ size?: number }>, { size: 22 })}
-                                </div>
-
-                                <div className="space-y-3">
-                                    <h3 className="text-lg font-bold text-white tracking-tight group-hover:text-blue-400 transition-colors">
-                                        {item.title}
-                                    </h3>
-                                    <p className="text-sm text-slate-500 leading-relaxed font-medium line-clamp-3 group-hover:text-slate-300">
-                                        {item.desc}
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Decorative Corner Glow */}
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/0 group-hover:bg-blue-500/10 blur-3xl rounded-full transition-all" />
-                        </motion.div>
-                    ))}
-                </div>
-
-                {/* Footer Support Label */}
-                <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-                    <p className="text-[10px] font-black tracking-[0.3em] text-slate-500 uppercase">
-                        Platform Support: Mercedes-Benz, BMW, VAG Group, Toyota & More
-                    </p>
-                    <div className="flex gap-4">
-                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Servers Online & Secure</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-};
+      <ul className="grid gap-x-8 sm:grid-cols-2">
+        {tools.map((t, i) => {
+          const Icon = t.icon;
+          return (
+            <motion.li
+              key={t.title}
+              initial={{ opacity: 0, x: 36 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.45, delay: (i % 2) * 0.08 }}
+              className="group flex gap-4 border-t border-white/15 py-6 transition-colors hover:border-[#8ee02b]"
+            >
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 text-[#8ee02b] transition-colors group-hover:bg-[#8ee02b] group-hover:text-[#0b2a4f]">
+                <Icon size={21} aria-hidden />
+              </span>
+              <div>
+                <h3 className="font-display text-xl font-bold">{t.title}</h3>
+                <p className="mt-1 text-sm font-medium text-white/65">{t.desc}</p>
+              </div>
+            </motion.li>
+          );
+        })}
+      </ul>
+    </div>
+  </section>
+);
 
 export default SoftwareSection;

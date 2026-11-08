@@ -1,105 +1,68 @@
 "use client";
 
-import React from 'react';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { Timer, Zap, ShieldCheck, HeartPulse, Car } from 'lucide-react';
+import React from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { HeartPulse, ShieldCheck, Timer, Zap, type LucideIcon } from "lucide-react";
 
-const WhyChooseUs = () => {
-    const points = [
-        {
-            title: "Quick Response",
-            desc: "Emergency diagnostic services with rapid turnaround times.",
-            icon: <Timer size={20} className="text-blue-600" />,
-        },
-        {
-            title: "Efficiency",
-            desc: "Optimized coding processes to get you back on the road faster.",
-            icon: <Zap size={20} className="text-blue-600" />,
-        },
-        {
-            title: "Reliability",
-            desc: "Manufacturer-grade tools ensuring long-term system stability.",
-            icon: <ShieldCheck size={20} className="text-blue-600" />,
-        },
-        {
-            title: "Expert Care",
-            desc: "Specialized focus on complex Mercedes and BMW electronics.",
-            icon: <HeartPulse size={20} className="text-blue-600" />,
-        }
-    ];
+const points: { title: string; desc: string; icon: LucideIcon; bg: string }[] = [
+  { title: "Quick response", desc: "Emergency diagnostics with fast turnaround.", icon: Timer, bg: "#8ee02b" },
+  { title: "Efficient coding", desc: "Optimized processes that get you back on the road sooner.", icon: Zap, bg: "#ffc81f" },
+  { title: "Reliable tools", desc: "Manufacturer-grade equipment for long-term stability.", icon: ShieldCheck, bg: "#8fdcff" },
+  { title: "Expert care", desc: "Focused on complex Mercedes-Benz and BMW electronics.", icon: HeartPulse, bg: "#8ee02b" },
+];
 
-    return (
-        <section className="py-24 bg-white overflow-hidden">
-            <div className="w-[80%] max-w-[1400px] mx-auto">
-                <div className="flex flex-col lg:flex-row items-center gap-16">
+const WhyChooseUs = () => (
+  <section className="bg-[#f6fcec] py-28">
+    <div className="mx-auto flex w-[88%] max-w-[1400px] flex-col items-center gap-16 lg:flex-row">
+      {/* image revealed with a wipe */}
+      <div className="relative w-full lg:w-1/2">
+        <div className="absolute -bottom-5 -right-5 h-full w-full rounded-[40px] bg-[#ffc81f]" aria-hidden />
+        <motion.div
+          initial={{ clipPath: "inset(0 100% 0 0 round 40px)" }}
+          whileInView={{ clipPath: "inset(0 0% 0 0 round 40px)" }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="relative aspect-[4/5] overflow-hidden"
+        >
+          <Image src="/images/download (5).jpg" alt="Technician working on a car's electronics" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
+        </motion.div>
+      </div>
 
-                    {/* LEFT: Styled Image with Automotive Decorative Element */}
-                    <div className="relative w-full lg:w-1/2">
-                        {/* The "Curved Corner" Frame */}
-                        <div className="relative z-10 rounded-tl-[120px] rounded-br-[120px] rounded-tr-3xl rounded-bl-3xl overflow-hidden aspect-[4/5] shadow-2xl">
-                            <Image
-                                src="/images/download (5).jpg"
-                                alt="Professional Technician at Work"
-                                fill
-                                className="object-cover"
-                            />
-                        </div>
+      <div className="w-full lg:w-1/2">
+        <h2 className="font-display text-4xl font-extrabold leading-[1.02] text-[#0b2a4f] md:text-6xl">
+          When the electronics fail, you need an answer fast
+        </h2>
+        <p className="mt-5 max-w-xl text-lg font-medium text-[#0b2a4f]/70">
+          A car that won&rsquo;t start or a dash full of warnings doesn&rsquo;t wait for a convenient day. We diagnose, code and repair so you aren&rsquo;t stuck for long.
+        </p>
 
-                        {/* Floating Automotive Icon - Replaces the "+" */}
-                        <div className="absolute -bottom-6 -left-6 z-20 w-20 h-20 bg-[#00215E] rounded-2xl flex items-center justify-center shadow-xl border-4 border-white">
-                            <Car size={32} className="text-white" strokeWidth={1.5} />
-                        </div>
-
-                        {/* Subtle background glow */}
-                        <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-50 blur-[100px] rounded-full opacity-60" />
-                    </div>
-
-                    {/* RIGHT: Content Content */}
-                    <div className="w-full lg:w-1/2 space-y-8">
-                        <div className="space-y-4">
-                            <div className="flex items-center gap-2">
-                                <div className="w-2 h-2 bg-blue-600 rounded-sm" />
-                                <span className="text-[10px] font-black tracking-[0.3em] text-blue-600 uppercase">
-                                    Why Choose Us?
-                                </span>
-                            </div>
-
-                            <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-tight">
-                                When You <span className="inline-block px-4 py-1 bg-blue-100 text-[#00215E] rounded-xl skew-x-[-3deg]">Need</span> It Most 
-                                Urgent <span className="inline-block px-4 py-1 bg-[#00215E] text-white rounded-xl skew-x-[-3deg]">Software</span> Care
-                            </h2>
-
-                            <p className="text-slate-500 font-medium leading-relaxed max-w-xl text-lg pt-4">
-                                Electronic failures don't wait for a convenient time. We provide expert vehicle coding,
-                                programming, and emergency electronic system repair when performance matters most.
-                            </p>
-                        </div>
-
-                        {/* Grid of Features */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-8 pt-6">
-                            {points.map((point, i) => (
-                                <div key={i} className="group flex gap-4">
-                                    <div className="flex-shrink-0 w-10 h-10 border border-slate-100 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                                        {point.icon}
-                                    </div>
-                                    <div className="space-y-1">
-                                        <h4 className="text-sm font-black text-slate-900 uppercase tracking-wider group-hover:text-blue-600 transition-colors">
-                                            {point.title}
-                                        </h4>
-                                        <p className="text-[13px] text-slate-500 font-medium leading-snug">
-                                            {point.desc}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
+        <div className="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-2">
+          {points.map((p, i) => {
+            const Icon = p.icon;
+            return (
+              <motion.div
+                key={p.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 + i * 0.08, duration: 0.45 }}
+                className="flex gap-4"
+              >
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-[#0b2a4f]" style={{ background: p.bg }}>
+                  <Icon size={22} aria-hidden />
+                </span>
+                <div>
+                  <h3 className="font-display text-xl font-bold text-[#0b2a4f]">{p.title}</h3>
+                  <p className="mt-1 text-[15px] font-medium text-[#0b2a4f]/65">{p.desc}</p>
                 </div>
-            </div>
-        </section>
-    );
-};
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
+);
 
 export default WhyChooseUs;

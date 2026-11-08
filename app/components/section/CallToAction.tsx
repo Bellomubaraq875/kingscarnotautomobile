@@ -1,99 +1,66 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { UserPlus, ArrowRight, ShieldCheck, Zap, Bell } from 'lucide-react';
-import  Link  from 'next/link';
+import React, { useRef } from "react";
+import Link from "next/link";
+import { motion, transform, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, Bell, ShieldCheck, Zap } from "lucide-react";
+import Car from "../motion/Car";
 
-const StandoutCTA = () => {
-    return (
-        <section className="relative py-32 bg-[#020617] overflow-hidden">
-            {/* 1. LAYERED AMBIENT BACKGROUND */}
-            <div className="absolute inset-0 z-0">
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/10 blur-[150px] rounded-full" />
-                <div className="absolute -bottom-20 -left-20 w-[600px] h-[600px] bg-indigo-900/20 blur-[150px] rounded-full" />
-                {/* Subtle Grid Pattern Overlay */}
-                <div className="absolute inset-0 opacity-[0.03] bg-[grid-white_20px_20px]"
-                    style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-            </div>
+/** Closing section. A small car drives across the road as this section scrolls through. */
+const CallToAction = () => {
+  const reduce = useReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
+  const carX = useTransform(scrollYProgress, (v) => `${transform(v, [0, 1], [-30, 62])}vw`);
+  const wheels = useTransform(scrollYProgress, (v) => v * 360 * 6);
+  const dashes = useTransform(scrollYProgress, (v) => `${-v * 62}vw 0`);
 
-            <div className="relative z-10 w-[85%] max-w-[1400px] mx-auto">
-                <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-0 bg-white/[0.02] backdrop-blur-3xl rounded-[48px] border border-white/5 overflow-hidden shadow-2xl">
+  return (
+    <section ref={ref} className="overflow-hidden bg-[#8ee02b] pt-24">
+      <div className="mx-auto grid w-[88%] max-w-[1400px] gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-end">
+        <div>
+          <h2 className="font-display text-5xl font-extrabold leading-[0.98] text-[#0b2a4f] md:text-7xl">
+            Ready when your car isn&rsquo;t.
+          </h2>
+          <p className="mt-6 max-w-lg text-lg font-semibold text-[#0b2a4f]/80">
+            Create a free profile to send us your vehicle details, track a job and get support from the workshop.
+          </p>
+          <ul className="mt-7 space-y-3 font-bold text-[#0b2a4f]">
+            {[
+              { i: ShieldCheck, t: "Free diagnostic reports" },
+              { i: Bell, t: "Maintenance alerts" },
+              { i: Zap, t: "Priority technical support" },
+            ].map(({ i: I, t }) => (
+              <li key={t} className="flex items-center gap-3">
+                <span className="grid h-9 w-9 place-items-center rounded-xl bg-[#0b2a4f] text-[#8ee02b]">
+                  <I size={18} aria-hidden />
+                </span>
+                {t}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-                    {/* LEFT SIDE: Visual Brand Power */}
-                    <div className="w-full lg:w-1/2 p-12 lg:p-20 bg-gradient-to-br from-blue-600/10 to-transparent">
-                        <div className="space-y-8">
-                            <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-4 py-2 rounded-full">
-                                <span className="relative flex h-2 w-2">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                                </span>
-                                <span className="text-[10px] font-black tracking-[0.3em] text-blue-400 uppercase">System Ready</span>
-                            </div>
+        <div className="flex flex-col gap-3 pb-2 sm:flex-row lg:flex-col">
+          <Link href="/register" className="group flex items-center justify-center gap-3 rounded-full bg-[#0b2a4f] px-8 py-5 text-base font-bold text-white transition hover:bg-white hover:text-[#0b2a4f]">
+            Create a free profile <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" aria-hidden />
+          </Link>
+          <Link href="/contact" className="flex items-center justify-center rounded-full border-2 border-[#0b2a4f] px-8 py-5 text-base font-bold text-[#0b2a4f] transition hover:bg-[#0b2a4f]/10">
+            Book an appointment
+          </Link>
+        </div>
+      </div>
 
-                            <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none">
-                                Unlock Your <br />
-                                <span className="text-blue-500">Vehicle's DNA.</span>
-                            </h2>
-
-                            <p className="text-gray-400 text-lg font-medium leading-relaxed max-w-md">
-                                Join the elite network of workshops and owners using OEM-level diagnostics to maintain peak automotive performance.
-                            </p>
-
-                            {/* Minimalist Feature List */}
-                            <div className="space-y-4 pt-4">
-                                {[
-                                    { icon: <ShieldCheck size={18} />, text: "Free Diagnostic Reports" },
-                                    { icon: <Bell size={18} />, text: "Proactive Maintenance Alerts" },
-                                    { icon: <Zap size={18} />, text: "Priority Technical Support" }
-                                ].map((item, i) => (
-                                    <div key={i} className="flex items-center gap-3 text-gray-300">
-                                        <div className="text-blue-500">{item.icon}</div>
-                                        <span className="text-sm font-bold tracking-wide uppercase">{item.text}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* RIGHT SIDE: The Action Card */}
-                    <div className="w-full lg:w-1/2 p-12 lg:p-20 bg-white/[0.02] border-l border-white/5 flex flex-col items-center justify-center">
-                        <motion.div
-                            whileHover={{ scale: 1.02 }}
-                            className="w-full max-w-sm space-y-8"
-                        >
-                            <div className="text-center space-y-2">
-                                <div className="mx-auto w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center shadow-[0_0_30px_rgba(37,99,235,0.4)] mb-6">
-                                    <UserPlus size={28} className="text-white" />
-                                </div>
-                                <h3 className="text-2xl font-black text-white tracking-tight uppercase">Create Profile</h3>
-                                <p className="text-gray-500 text-sm">Takes less than 60 seconds.</p>
-                            </div>
-                            
-                            <Link href="/register">
-                                <button className="w-full group relative flex items-center justify-center gap-4 bg-white text-[#020617] py-5 rounded-2xl font-black tracking-[0.2em] uppercase text-sm hover:bg-blue-600 hover:text-white transition-all duration-500 shadow-xl shadow-white/5">
-                                    Start For Free
-                                    <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
-                                </button>
-                            </Link>
-
-                            <div className="flex justify-center gap-8 pt-4 border-t border-white/5">
-                                <div className="text-center">
-                                    <p className="text-white font-bold text-lg leading-none">5k+</p>
-                                    <p className="text-[9px] text-gray-500 font-black uppercase tracking-widest mt-1 text-nowrap">Users</p>
-                                </div>
-                                <div className="text-center">
-                                    <p className="text-white font-bold text-lg leading-none">100%</p>
-                                    <p className="text-[9px] text-gray-500 font-black uppercase tracking-widest mt-1 text-nowrap">Secure</p>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    );
+      {/* road with the little car */}
+      <div className="relative mt-16 h-32 bg-[#1c3556]">
+        <div className="absolute inset-x-0 top-0 h-1.5 bg-[#ffc81f]" />
+        <motion.div className="road-dashes absolute inset-x-0 bottom-5 h-1.5 opacity-80" style={{ backgroundPosition: reduce ? "0 0" : dashes }} />
+        <motion.div className="absolute -top-[52px] left-0 w-[clamp(170px,22vw,300px)]" style={{ x: reduce ? "30vw" : carX }}>
+          <Car wheelRotate={reduce ? undefined : wheels} beam={false} className="block h-auto w-full" />
+        </motion.div>
+      </div>
+    </section>
+  );
 };
 
-export default StandoutCTA;
+export default CallToAction;
